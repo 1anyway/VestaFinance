@@ -2,7 +2,7 @@
 This is a repository where i store my research on VestaFinance project
 
 ## Vesta Finance Architecture
-![image](https://github.com/1anyway/VestaFinance/blob/main/VestaFinance.png)
+![image](https://github.com/1anyway/VestaFinance/blob/main/img/VestaFinance.png)
 
 ## The steps to opening a vault
 
