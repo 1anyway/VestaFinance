@@ -8,7 +8,6 @@ This is a repository where i store my research on VestaFinance project
 When borrowing&minting happen, a trove opened
 
 ## The steps to adjusting and closing a trove
-
 When liquidation happen, a trove closed
 
 ## The mechanisms behind of it
