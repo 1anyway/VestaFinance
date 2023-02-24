@@ -15,6 +15,7 @@ function openTrove(
 		address _upperHint,
 		address _lowerHint
 	) external payable override {
+        // The object vestaParams is appearing in VestaBase.sol file
 		vestaParams.sanitizeParameters(_asset);
 
 		ContractsCache memory contractsCache = ContractsCache(
@@ -323,6 +324,39 @@ function _closeTrove(
 
 		// Send the collateral back to the user
 		activePoolCached.sendAsset(_asset, msg.sender, coll);
+	}
+```
+And this is the closeTrove function in TroveManager.sol file
+```
+function _closeTrove(
+		address _asset,
+		address _borrower,
+		Status closedStatus
+	) internal {
+		assert(closedStatus != Status.nonExistent && closedStatus != Status.active);
+
+		uint256 TroveOwnersArrayLength = TroveOwners[_asset].length;
+
+		interestManager.exit(_asset, _borrower);
+
+		uint256 totalInterest = userUnpaidInterest[_borrower][_asset];
+
+		emit VaultUnpaidInterestUpdated(_asset, _borrower, 0);
+		emit SystemUnpaidInterestUpdated(_asset, unpaidInterest[_asset] -= totalInterest);
+
+		delete userUnpaidInterest[_borrower][_asset];
+
+		vestaParams.activePool().unstake(_asset, _borrower, Troves[_borrower][_asset].coll);
+
+		Troves[_borrower][_asset].status = closedStatus;
+		Troves[_borrower][_asset].coll = 0;
+		Troves[_borrower][_asset].debt = 0;
+
+		rewardSnapshots[_borrower][_asset].asset = 0;
+		rewardSnapshots[_borrower][_asset].VSTDebt = 0;
+
+		_removeTroveOwner(_asset, _borrower, TroveOwnersArrayLength);
+		sortedTroves.remove(_asset, _borrower);
 	}
 ```
 
