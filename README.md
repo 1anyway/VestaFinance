@@ -6,6 +6,12 @@ This is a repository where i store my research on VestaFinance project
 
 ## The Steps to Opening a Trove
 When borrowing&minting happen, a trove opened. When a borrower depositing collaterals and minting VST coins, that opens a trove.
+1. initialize the parameters ```vestaParams.sanitizeParameters(_asset)```
+2. Get the value of some needed parameters such as the price, fee, ICR and so on.
+3. Add status, settings to the trove.
+4. Insert the trove to sortedTroves and add trove owner to array
+   
+The code of these operations is below
 ```
 function openTrove(
 		address _asset,
@@ -101,7 +107,11 @@ function openTrove(
 ```
 ## The Steps to Adjusting and Closing a Trove
 ### Adjusting a Trove
-
+1. Get price from oracle
+2. Calculate rewards that have accumulated.
+3. Update trove's coll and debt based on whether they increase or decrease.
+4. The trove is re-ordered and inserted.
+5. Change tokens and ETH from adjustment
 ```
 	function _adjustTrove(
 		address _asset,
@@ -254,7 +264,16 @@ function openTrove(
 	}
 ```
 ### Closing a Trove
-Trove will closed when it's owner repaying all it's collaterals, also when all of the owner's collaterals are liquidated or redeemed. 
+Trove will closed when it's owner repaying all it's collaterals, also when all of the owner's collaterals are liquidated or redeemed.
+1. Calculate rewards that have accumulated.
+2. Get parameters of trove and check.
+3. Change active Pool and trove.
+4. Update interest.
+5. Clear trove.
+6. Remove trove owner and remove trove from sorted troves.
+7. Burn the repaid VST from the user's balance and the gas compensation from the Gas Pool
+   
+ 
 ```
 function _closeTrove(
 		address _asset,
