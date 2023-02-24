@@ -4,7 +4,7 @@ This is a repository where i store my research on VestaFinance project
 ## Vesta Finance Architecture
 ![image](https://github.com/1anyway/VestaFinance/blob/main/img/VestaFinance.png)
 
-## The Steps To Opening A Trove
+## The Steps to Opening a Trove
 When borrowing&minting happen, a trove opened. When a borrower depositing collaterals and minting VST coins, that opens a trove.
 ```
 function openTrove(
@@ -99,8 +99,8 @@ function openTrove(
 		emit VSTBorrowingFeePaid(vars.asset, msg.sender, vars.VSTFee);
 	}
 ```
-## The steps to adjusting and closing a trove
-### Adjusting A Trove
+## The Steps to Adjusting and Closing a Trove
+### Adjusting a Trove
 
 ```
 	function _adjustTrove(
@@ -253,7 +253,7 @@ function openTrove(
 		);
 	}
 ```
-### Closing A Trove
+### Closing a Trove
 Trove will closed when it's owner repaying all it's collaterals, also when all of the owner's collaterals are liquidated or redeemed. 
 ```
 function _closeTrove(
@@ -360,4 +360,4 @@ function _closeTrove(
 	}
 ```
 
-## The mechanisms behind of it
+## The Mechanisms Behind of It
