@@ -53,6 +53,8 @@ function openTrove(
 			_VSTAmount,
 			_maxFeePercentage
 		);
+
+		// Add to the borrower the same amount of debt as the minted VST
 		vars.netDebt = vars.netDebt.add(vars.VSTFee);
 		_requireAtLeastMinNetDebt(vars.asset, vars.netDebt);
 
