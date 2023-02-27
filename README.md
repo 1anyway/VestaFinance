@@ -314,7 +314,7 @@ function _closeTrove(
 			if (_amountIn == 0) {
 				_amountIn = dexTrader.getAmountIn(amountNeeded, _manualExchange);
 			}
-			
+
 			activePoolCached.unstake(_asset, msg.sender, _amountIn);
 			activePoolCached.sendAsset(_asset, address(this), _amountIn);
 			troveManagerCached.decreaseTroveColl(_asset, msg.sender, _amountIn);
@@ -388,3 +388,9 @@ function _closeTrove(
 ```
 
 ## The Mechanisms Behind of It
+### Opening a trove
+well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove.
+### Adjusting a trove
+When you adjusting a trove, 
+### Closing a trove
+
