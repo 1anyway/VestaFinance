@@ -390,7 +390,9 @@ function _closeTrove(
 ## The Mechanisms Behind of It
 ### Opening a trove
 well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove.
+...
 ### Adjusting a trove
-When you adjusting a trove, 
+When you adjusting a trove, it should calculate rewards that have accumulated. And then, change the parameters properly.
+...
 ### Closing a trove
-
+When closing a trove, it should calculate rewards that have accumulated. And then...
