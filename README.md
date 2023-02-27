@@ -112,7 +112,7 @@ function openTrove(
 3. Update trove's coll and debt based on whether they increase or decrease.
 4. The trove is re-ordered and inserted.
 5. Change tokens and ETH from adjustment.
-```
+```solidity
 	function _adjustTrove(
 		address _asset,
 		uint256 _assetSent,
@@ -274,7 +274,7 @@ Trove will closed when it's owner repaying all it's collaterals, also when all o
 7. Burn the repaid VST from the user's balance and the gas compensation from the Gas Pool.
    
  
-```
+```solidity
 function _closeTrove(
 		address _asset,
 		uint256 _amountIn,
@@ -346,7 +346,7 @@ function _closeTrove(
 	}
 ```
 And this is the closeTrove function in TroveManager.sol file
-```
+```solidity
 function _closeTrove(
 		address _asset,
 		address _borrower,
