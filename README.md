@@ -295,6 +295,7 @@ function _closeTrove(
 
 		_requireTroveisActive(_asset, troveManagerCached, msg.sender);
 
+		//  Calculate rewards that have accumulated
 		troveManagerCached.applyPendingRewards(_asset, msg.sender);
 		uint256 coll = troveManagerCached.getTroveColl(_asset, msg.sender);
 		uint256 debt = troveManagerCached.getTroveDebt(_asset, msg.sender);
@@ -313,7 +314,7 @@ function _closeTrove(
 			if (_amountIn == 0) {
 				_amountIn = dexTrader.getAmountIn(amountNeeded, _manualExchange);
 			}
-
+			
 			activePoolCached.unstake(_asset, msg.sender, _amountIn);
 			activePoolCached.sendAsset(_asset, address(this), _amountIn);
 			troveManagerCached.decreaseTroveColl(_asset, msg.sender, _amountIn);
