@@ -22,6 +22,7 @@ function openTrove(
 		address _lowerHint
 	) external payable override {
         // The object vestaParams is appearing in VestaBase.sol file
+		// Initialize parameters first  to opening a trove, it's something like you borrowing money from a bank, but also it's different. 
 		vestaParams.sanitizeParameters(_asset);
 
 		ContractsCache memory contractsCache = ContractsCache(
@@ -29,18 +30,22 @@ function openTrove(
 			vestaParams.activePool(),
 			VSTToken
 		);
+		// It's a structure, including the parameters setting and operations to open a trove.
 		LocalVariables_openTrove memory vars;
 		vars.asset = _asset;
 
+		// Get amount that the asset you've deposited, asset can be ETH or others.
 		_tokenAmount = getMethodValue(vars.asset, _tokenAmount, false);
 		vars.price = vestaParams.priceFeed().fetchPrice(vars.asset);
-
+		// Max fee percentage must be between 0.5% and 100%.
 		_requireValidMaxFeePercentage(vars.asset, _maxFeePercentage);
+		// That means you can't opening two of the same troves.
 		_requireTroveisNotActive(vars.asset, contractsCache.troveManager, msg.sender);
 
 		vars.VSTFee;
 		vars.netDebt = _VSTAmount;
 
+		// Mint VST
 		vars.VSTFee = _triggerBorrowingFee(
 			vars.asset,
 			contractsCache.troveManager,
@@ -168,7 +173,7 @@ function openTrove(
 
 		vars.netDebtChange = _VSTChange;
 
-		// If the adjustment incorporates a debt increase and system is in Normal Mode, then trigger a borrowing fee
+		// If the adjustment incorporates a debt increase and system is in Normal Mode, then trigger a borrowing fee.
 		if (_isDebtIncrease) {
 			vars.VSTFee = _triggerBorrowingFee(
 				vars.asset,
