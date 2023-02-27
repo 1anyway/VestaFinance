@@ -12,7 +12,7 @@ When borrowing&minting happen, a trove opened. When a borrower depositing collat
 4. Insert the trove to sortedTroves and add trove owner to array.
    
 The code of these operations is below
-```
+```solidity
 function openTrove(
 		address _asset,
 		uint256 _tokenAmount,
