@@ -389,10 +389,9 @@ function _closeTrove(
 
 ## The Mechanisms Behind of It
 ### Opening a trove
-well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove.
-...
+well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove. Insert trove to sorted Troves, and add trove owner to array.Then stake borrower's asset to the active pool.
 ### Adjusting a trove
-When you adjusting a trove, it should calculate rewards that have accumulated. And then, change the parameters properly.
-...
+When you adjusting a trove, it should calculate rewards that have accumulated. And then, change the parameters properly.Finally, if borrower increase his own collateral, then add his asset to active pool, otherwise 
+his reduced the portion of his collateral is cancelled as collateral, and send the portion of asset to borrower
 ### Closing a trove
 When closing a trove, it should calculate rewards that have accumulated. And then...
