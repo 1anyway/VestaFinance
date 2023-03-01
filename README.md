@@ -394,4 +394,4 @@ well, if you want to open a trove, than you have to accept some conditions just 
 When you adjusting a trove, it should calculate rewards that have accumulated. And then, change the parameters properly.Finally, if borrower increase his own collateral, then add his asset to active pool, otherwise 
 his reduced the portion of his collateral is cancelled as collateral, and send the portion of asset to borrower
 ### Closing a trove
-When closing a trove, it should calculate rewards that have accumulated. And then...
+To close a trove, it can be repayment by borrower and redemption, liquidation. When closing a trove, it should calculate rewards that have accumulated. And then borrower's collateral is not staking, and asset is sent proportionally to borrower or liquidator, redeemer.
