@@ -10,6 +10,8 @@ When borrowing&minting happen, a trove opened. When a borrower depositing collat
 2. Get the value of some needed parameters such as the price, fee, ICR and so on.
 3. Add status, settings to the trove.
 4. Insert the trove to sortedTroves and add trove owner to array.
+5. Move asset to active pool and mint proportionally amount of VST for borrowers
+6. Move the VST gas compensation to the Gas Pool
    
 The code of these operations is below
 ```solidity
