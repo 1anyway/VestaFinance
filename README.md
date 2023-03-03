@@ -38,6 +38,8 @@ function openTrove(
 
 		// Get amount that the asset you've deposited, asset can be ETH or others.
 		_tokenAmount = getMethodValue(vars.asset, _tokenAmount, false);
+
+		// Get price from oracle
 		vars.price = vestaParams.priceFeed().fetchPrice(vars.asset);
 		// Max fee percentage must be between 0.5% and 100%.
 		_requireValidMaxFeePercentage(vars.asset, _maxFeePercentage);
@@ -47,7 +49,7 @@ function openTrove(
 		vars.VSTFee;
 		vars.netDebt = _VSTAmount;
 
-		// Mint VST
+		// Mint VST Fee for borrowing
 		vars.VSTFee = _triggerBorrowingFee(
 			vars.asset,
 			contractsCache.troveManager,
@@ -391,7 +393,7 @@ function _closeTrove(
 
 ## The Mechanisms Behind of It
 ### Opening a trove
-well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove. Insert trove to sorted Troves, and add trove owner to array.Then stake borrower's asset to the active pool.
+well, if you want to open a trove, than you have to accept some conditions just like you borrowing some money from a bank, and that is to initialize some parameters for opening a trove. Inevitably we get the price of the asset collateralized by the user through oracle. Insert trove to sorted Troves, and add trove owner to array.Then stake borrower's asset to the active pool.
 ### Adjusting a trove
 When you adjusting a trove, it should calculate rewards that have accumulated. And then, change the parameters properly.Finally, if borrower increase his own collateral, then add his asset to active pool, otherwise 
 his reduced the portion of his collateral is cancelled as collateral, and send the portion of asset to borrower
